@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% extends "basic_app/base.html" %}
+  {% block body_block %}
+
+    <h1>Welcome to sign up page!</h1>
+    <h2>Please fill out the form below: </h2>
+
+    <form method="POST">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <input type="submit" class="btn btn-primary" value="Submit">
+
+    <div class="container">
+      <h2>Users are listed below:</h2>
+      {% if user_list %}
+      <ol>
+        {% for person in user_list %}
+        <li>User's info:</li>
+        <ul>
+          <li>Fist Name: {{ person.first_name }}</li>
+          <li>Last Name: {{ person.last_name }}</li>
+          <li>Email: {{ person.email }}</li>
+        </ul>
+        {% endfor %}
+      </ol>
+      {% else %}
+      <p>NO RECORD FOUND</p>
+      {% endif %}
+    </div>
+    
+
+  {% endblock %}
